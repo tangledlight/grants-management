@@ -16,6 +16,7 @@ try {
   const response = await page.goto(base);
   assert.equal(response.status(), 200);
   await page.getByRole('heading', { name: 'Your funding, in focus.' }).waitFor();
+  assert.equal(await page.locator('article').filter({ has: page.getByRole('heading', { name: 'Neighborhood Community Project Grant', exact: true }) }).count(), 0);
   await page.getByRole('button', { name: 'Create grant', exact: true }).click();
   assert.equal(await page.getByLabel('Title *', { exact: true }).inputValue(), 'Neighborhood Community Project Grant');
   assert.equal(await page.getByLabel('Assigned reviewer', { exact: true }).locator('option').count(), 2);
@@ -29,15 +30,8 @@ try {
   console.log('Public access, creation prefill, ownership filters and empty states passed.');
 
   await page.getByRole('button', { name: 'Review queue', exact: true }).click();
-  await page.getByRole('button', { name: 'Sam Rivera', exact: true }).click();
-  await page.getByRole('heading', { name: 'Review & decision', exact: true }).waitFor();
-  await page.getByRole('checkbox').first().check();
-  await page.getByLabel('Award amount (USD)', { exact: true }).fill('10000.00');
-  await page.getByRole('button', { name: 'Approve application', exact: true }).click();
-  const dialog = page.getByRole('dialog');
-  assert.ok((await dialog.innerText()).includes('$2,500.00'));
-  await dialog.getByRole('button', { name: 'Cancel', exact: true }).click();
-  console.log('Evidence review and partial-award confirmation passed without saving a decision.');
+  await page.getByText('You’re all caught up. No applications need your decision.', { exact: true }).waitFor();
+  console.log('The live-demo baseline starts with an empty review queue.');
 
   await page.getByLabel('Mode', { exact: true }).selectOption('applicant');
   const arts = page.locator('article').filter({ has: page.getByRole('heading', { name: 'Community Arts Fund', exact: true }) });

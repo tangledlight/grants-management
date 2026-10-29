@@ -26,13 +26,13 @@ The app runs at `http://localhost:3000`. Live mutations and reset affect the con
 
 ## Fresh Supabase environment
 
-Apply `supabase/migrations/001_demo.sql`, followed by `002_snapshot.sql`, once to a new project. They create eight server-only tables, the transactional write function, the consistent snapshot function, four identities, four grants, three applications and a private `evidence` bucket. Existing environments must use reviewed incremental migrations rather than rerunning initial creation.
+Apply `supabase/migrations/001_demo.sql`, followed by `002_snapshot.sql`, once to a new project. They create eight server-only tables, the transactional write function, the consistent snapshot function, four identities, three grants, two applications and a private `evidence` bucket. Existing environments must use reviewed incremental migrations rather than rerunning initial creation.
 
 The Edge Function source is `supabase/functions/grants-api/index.ts`, with its pinned import map in `deno.json`. Deployment includes its relative imports from `lib/`, including generated database types. Keep function gateway JWT verification enabled. Supabase supplies the function's server key through its runtime environment; no server key is needed in the Vercel deployment.
 
 The three fixture PDFs are committed under `supabase/fixtures/`. The function includes an immutable encoding of those same bytes so `POST /api/demo/seed-storage`, with a selected admin identity and current generation, can provision the nine baseline object paths without transferring a server key. The operation never overwrites existing objects. In direct local mode, `npm run seed:storage` provisions them using the server key instead.
 
-Seeded applications are read-only examples of Unreviewed, Approved and Rejected states. Reset restores them atomically and reuses their immutable evidence objects.
+Seeded applications are read-only examples of Approved and Rejected states. Neighborhood Community Project Grant is not seeded, so it can be created live; new submissions begin Unreviewed. Reset restores them atomically and reuses their immutable evidence objects.
 
 ## Tests
 

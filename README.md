@@ -26,7 +26,7 @@ A demo was chosen over a production-ready system because customer discovery stil
 4. **Applicant:** revisit the application. The requested amount, decision, award, simulated distribution, and remaining award balance should agree with the admin view.
 5. **Admin:** inspect the funding totals or reset the shared dataset after the walkthrough. Reset requires confirmation and affects every visitor.
 
-The baseline also contains Unreviewed, Approved, and Rejected applications, plus open, closed, and draft grants, so the main states can be inspected without first creating every record.
+The Neighborhood Community Project Grant is deliberately absent from the baseline so it can be created live using the editable prefill. Publishing it starts with zero applications, awards and distributions; an application from Sam is optional. Other sample grants retain Approved and Rejected examples, and the review queue starts empty.
 
 ## Financial example
 

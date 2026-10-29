@@ -151,11 +151,12 @@ create function public.demo_seed() returns void language plpgsql set search_path
 declare g uuid; a uuid; w uuid; r jsonb; uid uuid; app_actor uuid; n int; gen int;
 begin
  select generation into gen from demo_state where id=1;
- for n in 1..3 loop
+ -- Keep the Neighborhood grant creation prefill out of the baseline for the live demo.
+ for n in 2..3 loop
   g=('10000000-0000-0000-0000-'||lpad(n::text,12,'0'))::uuid;
   insert into grants(id,creator_id,reviewer_id,title,description,eligibility,requirements,budget_cents,status)
   values(g,'00000000-0000-0000-0000-000000000001','00000000-0000-0000-0000-000000000002',
-   case n when 1 then 'Neighborhood Community Project Grant' when 2 then 'Community Arts Fund' else 'Local Learning Fund' end,
+   case n when 2 then 'Community Arts Fund' else 'Local Learning Fund' end,
    'Funding for community-led projects that improve shared spaces and connect neighbors.',
    'Nonprofit organizations or community groups with a nonprofit fiscal sponsor. Complete projects within 12 months.',
    '[{"id":"proposal","description":"Project proposal: describe the need, activities, participants, timeline and expected results."},{"id":"budget","description":"Project budget: explain planned expenses and use of funds."},{"id":"eligibility","description":"Eligibility evidence: nonprofit registration or fiscal sponsorship letter."}]',
