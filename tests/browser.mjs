@@ -14,7 +14,7 @@ try {
   await page.getByRole('heading', { name: 'Your funding, in focus.' }).waitFor();
   await page.getByRole('button', { name: 'Create grant', exact: true }).click();
   await page.getByLabel('Title *', { exact: true }).fill(title);
-  await page.getByLabel('Assigned reviewer *', { exact: true }).selectOption('00000000-0000-0000-0000-000000000002');
+  await page.getByLabel('Assigned reviewer', { exact: true }).selectOption('00000000-0000-0000-0000-000000000002');
   await page.getByRole('button', { name: 'Publish', exact: true }).click();
   await page.getByRole('heading', { name: title, exact: true }).waitFor();
   console.log('Grant created and published through the browser.');

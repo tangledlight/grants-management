@@ -42,7 +42,18 @@ One shared handler supports both the hosted Edge Function and an optional direct
 
 ## Verification
 
-The implementation is checked with unit, TypeScript, production-build, API integration and browser tests. Exact completed results and deployment details are recorded here after release verification.
+| Check | Result |
+| --- | --- |
+| Unit tests | 5 passed |
+| Full TypeScript check | Passed |
+| Next.js 16.4.3 production build | Passed |
+| Live API integration suite | Passed, including concurrent approvals and finality |
+| Fixture integrity | 3 PDFs match their declared seed sizes |
+| Dependency audit | 0 known vulnerabilities at verification |
+| Browser walkthrough | In progress; control-label improvements are included in the source |
+| Vercel production release | Pending team-access authorization; no successful release is claimed |
+
+The API suite ran through a production Next.js build connected to the live Supabase Edge Function, PostgreSQL and private storage. It restored the four-grant, three-application baseline after completing. The first Vercel Git-source deployment failed during Git metadata resolution, before building; release work is pending the required Vercel team authorization.
 
 Supabase security inspection confirms that anonymous callers cannot read application tables or execute mutation RPCs, and the evidence bucket is private. The RLS-without-policy informational notices are intentional: the demo's server is the only permitted database caller. The missing foreign-key indexes identified during inspection were added.
 
