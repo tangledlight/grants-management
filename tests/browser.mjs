@@ -3,6 +3,7 @@ import { chromium } from 'playwright';
 import assert from 'node:assert/strict';
 import path from 'node:path';
 if (process.env.ALLOW_DEMO_RESET !== '1' || !process.env.TEST_BASE_URL) throw new Error('Set TEST_BASE_URL and ALLOW_DEMO_RESET=1 for a disposable demo environment.');
+if (!['localhost','127.0.0.1','[::1]'].includes(new URL(process.env.TEST_BASE_URL).hostname)) throw new Error('The write/reset suite is restricted to a local UI backed by disposable development data. Use browser-readonly.mjs for public deployments.');
 const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
 const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
 page.setDefaultTimeout(30000);

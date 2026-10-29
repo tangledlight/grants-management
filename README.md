@@ -2,6 +2,8 @@
 
 A working grant application and award demo built for a Concourse forward deployed product management assessment. It follows one connected workflow: an administrator publishes funding, an applicant submits evidence, and a reviewer makes a decision with consistent funding totals across both views.
 
+**[Open the public demo](https://grants-management.vercel.app)** — no login required.
+
 ## Start here
 
 - [Product requirements](docs/grants-demo-prd.md): users, scope, behavior, financial rules, and acceptance criteria.
@@ -38,6 +40,10 @@ For a $100,000 grant and a $20,000 award:
 | Committed but undistributed | $15,000 |
 
 The whole award is committed at approval. The simulated distribution is 25% of that applicant’s award and does not reduce available funding a second time. Requests do not reserve funding; the database checks the current budget when a decision is saved.
+
+## Verification
+
+Five unit tests, full TypeScript checking, the production build, and the live API integration suite passed. Public browser checks covered desktop/mobile layouts, review confirmation, applicant privacy, document downloads and reload behavior, with zero API mutations. [Implementation notes](docs/implementation.md) record the architecture and exact verification scope.
 
 ## Boundaries
 

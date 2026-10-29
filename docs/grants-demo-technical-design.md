@@ -3,7 +3,7 @@
 > Published design proposal. See [Implementation notes](implementation.md) for the deployed Edge Function boundary, current verification, and implementation limits.
 Version 1.0 · October 29, 2026 · Proposed implementation
 
-Source: [grants-demo-prd.md](https://chatgpt.com/library?file_id=libfile_0210fa35a82c8191876fe7762efe9b2b&account_id=personal), PRD v0.3, Library version 2. This document translates the PRD into an implementation plan; it does not claim that the system has been built or tested.
+Source: [grants-demo-prd.md](grants-demo-prd.md), PRD v0.3. This document translates the PRD into an implementation plan; it does not claim that the system has been built or tested.
 
 ## 1. Design summary
 

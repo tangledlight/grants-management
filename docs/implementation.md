@@ -50,10 +50,12 @@ One shared handler supports both the hosted Edge Function and an optional direct
 | Live API integration suite | Passed, including concurrent approvals and finality |
 | Fixture integrity | 3 PDFs match their declared seed sizes |
 | Dependency audit | 0 known vulnerabilities at verification |
-| Browser walkthrough | In progress; control-label improvements are included in the source |
-| Vercel production release | Pending team-access authorization; no successful release is claimed |
+| Public browser smoke checks | Passed on desktop and mobile, with zero API mutations |
+| Vercel production release | READY; https://grants-management.vercel.app returns HTTP 200 without authentication |
 
-The API suite ran through a production Next.js build connected to the live Supabase Edge Function, PostgreSQL and private storage. It restored the four-grant, three-application baseline after completing. The first Vercel Git-source deployment failed during Git metadata resolution, before building; release work is pending the required Vercel team authorization.
+The API suite ran through a production Next.js build connected to the live Supabase Edge Function, PostgreSQL and private storage. It restored the four-grant, three-application baseline after completing. The deployed UI is publicly accessible without Vercel login protection. The public browser suite guards against all API mutations and checks creation prefill, ownership filters, empty states, review confirmation, applicant forms and balances, privacy, private downloads, reload behavior and mobile layout. The destructive write/reset browser suite was not run against the public dataset; writes and concurrency were covered by the earlier API integration suite.
+
+The release was uploaded from the committed source through the Vercel API. GitHub source publication and Vercel deployment are separate operations; this release path does not configure automatic deployments on future GitHub pushes.
 
 Supabase security inspection confirms that anonymous callers cannot read application tables or execute mutation RPCs, and the evidence bucket is private. The RLS-without-policy informational notices are intentional: the demo's server is the only permitted database caller. The missing foreign-key indexes identified during inspection were added.
 

@@ -7,6 +7,7 @@ import type { Application, DemoUser, Snapshot } from '../lib/types.ts';
 
 const base = process.env.TEST_BASE_URL;
 const enabled = !!base && process.env.ALLOW_DEMO_RESET === '1';
+if (enabled && !['localhost','127.0.0.1','[::1]'].includes(new URL(base!).hostname)) throw new Error('Write/reset tests require a local UI backed by disposable development data; use the read-only browser suite for public deployments.');
 test('persistent grant journey, permissions, upload verification and concurrent funding decisions', { skip: !enabled }, async () => {
   async function request(actor: string, path: string, body?: Record<string, unknown>, method?: string) {
     const response = await fetch(`${base}/api/${path}`, { method: method || (body ? 'POST' : 'GET'), headers: {

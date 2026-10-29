@@ -46,6 +46,8 @@ npx playwright install chromium
 ALLOW_DEMO_RESET=1 npm run test:browser
 ```
 
+Both write/reset suites are restricted to local UI URLs and must use a disposable backing database. For safe checks of the public deployment, run `npm run test:browser:readonly`; its network guard rejects API mutations.
+
 The API integration suite covers uploads, submission retries, privacy, concurrent approvals, final decisions, funding invariants, closure, reassignment and stale generations. The browser suite covers grant publication, applicant evidence, assigned review, partial approval, applicant balances, private download, reload persistence, mobile layout and reset. Browser system dependencies may also need to be installed on a Linux host.
 
 ## API

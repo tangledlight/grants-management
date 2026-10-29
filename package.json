@@ -10,7 +10,8 @@
     "test": "node --experimental-strip-types --test tests/rules.test.ts",
     "seed:storage": "node --env-file=.env.local --experimental-strip-types scripts/seed-storage.ts",
     "test:integration": "node --env-file=.env.local --experimental-strip-types --test tests/integration.test.ts",
-    "test:browser": "node --env-file=.env.local tests/browser.mjs"
+    "test:browser": "node --env-file=.env.local tests/browser.mjs",
+    "test:browser:readonly": "node tests/browser-readonly.mjs"
   },
   "dependencies": {
     "next": "16.4.3",
